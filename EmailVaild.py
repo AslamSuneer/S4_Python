@@ -1,15 +1,21 @@
-def verify_email(email):
-    if '@' not in email or '.' not in email[email.index('@'):]:
-        return False
-    if not email[email.index('@')+1:email[email.index('@'):].index('.')].isalpha():
-        return False
-    if not email[email[email.index('@'):].index('.')+1:].isalpha():
-        return False
-    return True
 
-email_input = input("Enter Email: ")
-if verify_email(email_input):
-    print("Valid Email")
-else:
-    print("Invalid Email")
-  
+def ver(s):
+	if '@' not in s:
+		print('a')
+		return False
+	if '.' not in s[s.index('@'):]:
+		print('b')
+		return False
+	if not s[s.index('@')+1:s[s.index('@'):].index('.')].isalpha():
+		print('c')
+		return False
+	if not s[s[s.index('@'):].index('.')+1:].isalpha():
+		print('d')
+		return False
+	return True
+
+x=input("Enter Email : ")
+t=ver(x)
+if t:
+	print("Valid Email")
+else: print("Invalid Email")
