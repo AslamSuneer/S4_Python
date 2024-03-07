@@ -1,13 +1,20 @@
-import re
-
 def ver(s):
-    em=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-    if re.match(em,s):
-        return True
-    return False
+    if '@' not in s:
+        return False
 
-x=input("Enter Email : ")
-t=ver(x)
-if t:
-	print("Valid Email")
-else: print("Invalid Email")
+    lpart, dpart = s.split('@')
+
+    if '.' not in dpart:
+        return False
+
+    if not lpart.isalnum() or not dpart.replace('.', '').isalnum():
+        return False
+
+    return True
+
+x = input("Enter Email : ")
+if ver(x):
+    print("Valid Email")
+else:
+    print("Invalid Email")
+    
