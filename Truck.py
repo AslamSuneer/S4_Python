@@ -1,22 +1,16 @@
-import random as rd
 import numpy as np
-from scipy import stats as st
+from scipy.stats import t
+sammean,sd,n,popmean,p=22,3,16,20,0.05
+t_ob=(sammean-popmean)/(sd/np.sqrt(n))
+df=n-1
+crit_t=t.ppf(1-p,df)
 
-mean_per_mpg=22
-stand_dev=3
-prev_mpg=20
-prob=0.05
+print("Observed Value: ",t_ob)
 
-mpg=np.random.normal(mean_per_mpg,stand_dev,16)
+print("Table Value: ",crit_t)
 
-print(mpg) 
-
-t_stat,p_vak=st.ttest_1samp(mpg,prev_mpg)
-
-print("T-Statistics : ",t_stat)
-print("P-Value : ",p_vak)
-
-if p_vak < prob:
-    print("Reject Null Hypothesis.")
+if np.abs(t_ob)>crit_t:
+	print("Reject NULL Hypothesis.")
 else:
-    print("Accept Null Hypothesis.")
+	print("Failed to Reject NULL Hypothesis.")
+
