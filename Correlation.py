@@ -1,0 +1,11 @@
+import numpy as np
+hand=np.array([17,15,19,17,21])
+height=np.array([150,154,169,172,175])
+n=len(hand)
+sum_xy=np.sum(hand*height)
+sum_x=np.sum(hand)
+sum_y=np.sum(height)
+sum_x2=np.sum(hand**2)
+sum_y2=np.sum(height**2)
+r=(n*sum_xy-sum_x*sum_y)/np.sqrt((n*sum_x2-sum_x**2)*(n*sum_y2-sum_y**2))
+print(f"Correlation Coeffecient(r):{r}")
