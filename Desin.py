@@ -8,42 +8,61 @@ screen.bgcolor("white")
 artist = turtle.Turtle()
 
 # Set the speed and thickness of the pen
-artist.speed(10)
+artist.speed(0)  # fastest speed
 artist.pensize(2)
 
-# Function to draw a square
-def draw_square(size, color):
+# Function to draw a rectangle
+def draw_rectangle(x, y, width, height, color):
+    artist.penup()
+    artist.goto(x, y)
+    artist.pendown()
     artist.color(color)
     artist.begin_fill()
-    for _ in range(4):
-        artist.forward(size)
+    for _ in range(2):
+        artist.forward(width)
+        artist.right(90)
+        artist.forward(height)
         artist.right(90)
     artist.end_fill()
 
-# Function to draw a circle
-def draw_circle(radius, color):
+# Function to draw a line
+def draw_line(x1, y1, x2, y2, color):
+    artist.penup()
+    artist.goto(x1, y1)
+    artist.pendown()
     artist.color(color)
-    artist.begin_fill()
-    artist.circle(radius)
-    artist.end_fill()
+    artist.goto(x2, y2)
 
-# Function to draw the design
-def draw_design():
-    colors = ["red", "orange", "yellow", "green", "blue", "purple"]
-    for i in range(36):
-        draw_square(100, colors[i % 6])
-        artist.right(10)
-    for i in range(18):
-        draw_circle(100, colors[i % 6])
-        artist.right(20)
+# Draw the classroom layout
+def draw_classroom():
+    # Drawing the walls
+    draw_rectangle(-300, -200, 600, 400, "lightblue")
 
-# Move the turtle to the starting position
-artist.penup()
-artist.goto(-150, -150)
-artist.pendown()
+    # Seating arrangement
+    draw_rectangle(-250, -150, 500, 300, "white")
 
-# Draw the design
-draw_design()
+    # Podium
+    draw_rectangle(-200, 50, 200, 50, "brown")
+
+    # Smartboard
+    draw_rectangle(50, 50, 150, 100, "green")
+
+    # Projector
+    draw_rectangle(200, 150, 50, 50, "black")
+
+    # Camera
+    draw_rectangle(250, 150, 25, 25, "red")
+
+    # Teacher position
+    draw_rectangle(-200, 100, 50, 50, "yellow")
+
+    # Cable layout
+    draw_line(-200, 150, 50, 150, "gray")  # From podium to smartboard
+    draw_line(50, 150, 200, 150, "gray")   # From smartboard to projector
+    draw_line(200, 150, 250, 150, "gray")  # From projector to camera
+
+# Draw the classroom layout
+draw_classroom()
 
 # Hide the turtle and display the result
 artist.hideturtle()
